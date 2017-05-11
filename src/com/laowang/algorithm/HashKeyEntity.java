@@ -10,6 +10,7 @@ public class HashKeyEntity {
     private long id2;
 
     private String hash;
+    //长度限制24位
     private String objectStr;
 
     public String getHashKey() {
