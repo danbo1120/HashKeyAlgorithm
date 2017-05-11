@@ -34,6 +34,11 @@ public class HashKey {
      */
     public static String getHashKey(String md5, int type, long id1, long id2, String objectStr)
             throws Exception {
+        if (objectStr == null || objectStr.length() != 24) {
+            System.err.println("objectStr仅支持24位长度");
+            return null;
+        }
+
         byte[] keyBytes = new byte[size];//
         byte hashBytes[];// 16
         byte hashKeyBytes[];
