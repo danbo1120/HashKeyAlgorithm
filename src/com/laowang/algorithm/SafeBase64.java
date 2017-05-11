@@ -17,8 +17,9 @@ public class SafeBase64 {
     }
 
     /**
-     * 出品：xaonly 作者：时间如水 版本日期：2012-7-9 功能：实现xaonlybase64编码 输入：字节型数组
-     * 输出：xaonlybase64编码后的字符串
+     * base64编码
+     * @param data
+     * @return
      */
     public static String encode(byte[] data) {
         int[] c = new int[3];
