@@ -37,7 +37,7 @@ public class SafeBase64 {
                     c[i] = byte2Int(data[n + i]);
                 }
             }
-            //// System.out.println("c[0]=" + c[0]);
+
             w[0] = (int) (c[0] / 4);
             w[1] = (int) ((c[0] & 3) * 16 + (int) (c[1] / 16));
 
@@ -53,19 +53,18 @@ public class SafeBase64 {
             }
             for (i = 0; i < 4; i++) {
                 if (w[i] >= 0) {
-                    retry += mimeencode(w[i]);
+                    retry += mimeEncode(w[i]);
                 }
             }
-            //// System.out.println("retry=" + retry);
         }
         return retry;
     }
 
-    private static char mimeencode(int w) {
+    private static char mimeEncode(int w) {
         return legalChars[w];
     }
 
-    private static int mimedecode(char a) {
+    private static int mimeEncode(char a) {
         int j;
         for (j = 0; j < legalChars.length; j++) {
             if (a == legalChars[j]) {
@@ -89,7 +88,6 @@ public class SafeBase64 {
         byte[] decodedBytes = bos.toByteArray();
         try {
             bos.close();
-            bos = null;
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -106,7 +104,7 @@ public class SafeBase64 {
                 if (n + i > tl) {
                     w[i] = -1;
                 } else {
-                    w[i] = (byte) mimedecode(s.charAt(n + i));
+                    w[i] = (byte) mimeEncode(s.charAt(n + i));
                 }
             }
             if (w[1] >= 0) {
